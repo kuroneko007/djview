@@ -33,19 +33,19 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver{
 	
 	public void createView(){
 		viewPanel = new JPanel(new GridLayout(1, 2));
-        	viewFrame = new JFrame("View");
-        	viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	viewFrame.setSize(new Dimension(100, 80));
-        	bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
+		viewFrame = new JFrame("View");
+        viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        viewFrame.setSize(new Dimension(100, 80));
+        bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
 		beatBar = new BeatBar();
 		beatBar.setValue(0);
-        	JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
+        JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
 		bpmPanel.add(beatBar);
-        	bpmPanel.add(bpmOutputLabel);
-        	viewPanel.add(bpmPanel);
-        	viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
-        	viewFrame.pack();
-        	viewFrame.setVisible(true);
+        bpmPanel.add(bpmOutputLabel);
+        viewPanel.add(bpmPanel);
+        viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
+        viewFrame.pack();
+        viewFrame.setVisible(true);
 	}
 	
 	public void createControls(){
@@ -94,8 +94,8 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver{
         decreaseBPMButton.addActionListener(this);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-	buttonPanel.add(decreaseBPMButton);
-	buttonPanel.add(increaseBPMButton);
+		buttonPanel.add(decreaseBPMButton);
+		buttonPanel.add(increaseBPMButton);
 
         JPanel enterPanel = new JPanel(new GridLayout(1, 2));
         enterPanel.add(bpmLabel);
@@ -134,10 +134,11 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver{
 	
 	@Override
 	public void updateBPM(){
+		System.out.println("update BPM");
 		if (model != null){
 			int bpm = model.getBPM();
 			if (bpm == 0) {
-		   		bpmOutputLabel.setText("offline");
+		   		bpmOutputLabel.setText("Offline");
 			} else {
 		  		bpmOutputLabel.setText("Current BPM: " + bpm);
 			}
@@ -146,6 +147,7 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver{
 	
 	@Override
 	public void updateBeat(){
+		System.out.println("Update Beat");
 		if (beatBar !=null) {
 			beatBar.setValue(100);  
 		}
